@@ -228,3 +228,7 @@ logs/
 
 # Notebooks
 .ipynb_checkpoints/
+
+# artifacts 
+artifacts 
+artifacts/
