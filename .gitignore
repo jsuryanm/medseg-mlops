@@ -205,3 +205,26 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Models 
+models/
+checkpoints/
+*.pt
+*.pth
+*.onnx
+
+# MLflow
+mlruns/
+
+# Logs
+*.log
+logs/
+
+# DVC cache
+.dvc/cache/
+
+# Streamlit
+.streamlit/
+
+# Notebooks
+.ipynb_checkpoints/

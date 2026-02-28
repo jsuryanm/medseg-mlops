@@ -1,0 +1,23 @@
+--extra-index-url https://download.pytorch.org/whl/cu128
+
+torch
+torchvision
+timm
+numpy
+pandas
+opencv-python
+Pillow
+matplotlib
+scikit-learn
+tqdm
+segmentation-models-pytorch
+albumentations
+mlflow
+tensorboard
+dvc
+fastapi
+uvicorn
+python-multipart
+streamlit
+evidently
+python-dotenv

@@ -24,7 +24,8 @@ list_of_files = [
     "app.py",
     "main.py",
     "setup.py",
-    "Dockerfile",
+    "Dockerfile.api",
+    "Dockerfile.ui"
     ".dockerignore",
     "requirements.txt",
     "research/trials.ipynb",
