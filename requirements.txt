@@ -18,6 +18,8 @@ dvc
 fastapi
 uvicorn
 python-multipart
+pydantic
 streamlit
 evidently
 python-dotenv
+PyYAML
