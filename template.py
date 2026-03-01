@@ -34,6 +34,8 @@ list_of_files = [
     f"src/{project_name}/entity/artifact_entity.py",
     f"src/{project_name}/constants/__init__.py",
     f"src/{project_name}/exceptions/__init__.py",
+    "backend/__init__.py",
+    "backend/app.py",
     "config/config.yaml",
     "dvc.yaml",
     "params.yaml",
