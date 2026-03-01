@@ -11,13 +11,16 @@ import random
 import numpy as np 
 import torch 
 
-def read_yaml(path_to_yaml: Path, schema: BaseModel):
+def read_yaml(path_to_yaml: Path, schema: BaseModel = None):
     try:
         with open(path_to_yaml) as yaml_file:
             content = yaml.safe_load(yaml_file)
         
         logger.info(f"yaml file:{path_to_yaml} loaded successfully")
-        return schema.model_validate(content) 
+
+        if schema:
+            return schema.model_validate(content)
+        return content 
         # validates data from dict or another class instance to create new model instance
     except Exception as e:
         logger.error(f"Error loading JSON:{path_to_yaml}")

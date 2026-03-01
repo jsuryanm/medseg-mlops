@@ -3,7 +3,7 @@ from pathlib import Path
 
 from src.medical.constants import *
 from src.medical.utils.common import read_yaml,create_directories
-from medical.entity.config_schema import ConfigSchema
+from src.medical.entity.config_schema import ConfigSchema
 from src.medical.entity.config_entity import (DataIngestionConfig)
 
 class ConfigurationManager:
