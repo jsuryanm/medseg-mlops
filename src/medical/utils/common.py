@@ -1,71 +1,98 @@
-import yaml 
-import json 
-from pathlib import Path 
-from typing import Dict
-from pydantic import validate_call
-from src.medical.exceptions import MedException
+import os
+from box.exceptions import BoxValueError
+import yaml
 from src.medical.logger import logger
-import sys
+from src.medical.exceptions import MedException
+import json
+from ensure import ensure_annotations
+from box import ConfigBox
+from pathlib import Path
+import sys 
 
-@validate_call
-def read_yaml(path: Path) -> Dict:
-    """
-    Read YAML file safely
+
+
+@ensure_annotations
+def read_yaml(path_to_yaml: Path) -> ConfigBox:
+    """reads yaml file and returns
+
+    Args:
+        path_to_yaml (str): path like input
+
+    Raises:
+        ValueError: if yaml file is empty
+        e: empty file
+
+    Returns:
+        ConfigBox: ConfigBox type
     """
     try:
-        if not path.exists():
-            raise FileNotFoundError(f"YAML file not found: {path}")
-        
-        with open(path) as f:
-            data = yaml.safe_load(f)
-
-        if data is None:
-            raise ValueError("YAML file is empty")
-        
-        logger.info(f"YAML loaded from {path}")
-        return data
+        with open(path_to_yaml) as yaml_file:
+            content = yaml.safe_load(yaml_file)
+            logger.info(f"yaml file: {path_to_yaml} loaded successfully")
+            return ConfigBox(content)
+    
+    except BoxValueError:
+        raise ValueError("yaml file is empty")
     
     except Exception as e:
-        logger.error(f"Error reading YAML: {path}")
+        logger.error(f"Error reading YAML:{path_to_yaml}")
         raise MedException(e,sys)
     
-@validate_call
-def create_directories(paths: list[Path],verbose: bool = True):
+
+
+@ensure_annotations
+def create_directories(path_to_directories: list, verbose=True):
+    """create list of directories
+
+    Args:
+        path_to_directories (list): list of path of directories
+        ignore_log (bool, optional): ignore if multiple dirs is to be created. Defaults to False.
+    """
     try:
-        for path in paths:
-            path.mkdir(parents=True,exist_ok=True)
+        for path in path_to_directories:
+            os.makedirs(path, exist_ok=True)
             if verbose:
-                logger.info(f"Created directory: {path}")
+                logger.info(f"created directory at: {path}")
+    
     except Exception as e:
         logger.error("Directory creation failed")
         raise MedException(e,sys)
 
-@validate_call
-def save_json(path: Path, data: Dict):
+@ensure_annotations
+def save_json(path: Path, data: dict):
+    """save json data
+
+    Args:
+        path (Path): path to json file
+        data (dict): data to be saved in json file
+    """
     try:
-        path.parent.mkdir(parents=True,exist_ok=True)
+        with open(path, "w") as f:
+            json.dump(data, f, indent=4)
 
-        with open(path,"w") as f:
-            json.dump(data,f,indent=4)
-
-        logger.info(f"JSON saved at {path}")
+        logger.info(f"json file saved at: {path}")
 
     except Exception as e:
-        logger.error(f"Error saving JSON:{path}")
+        logger.error(f"Error saving JSON: {path}")
         raise MedException(e,sys)
-    
-@validate_call
-def load_json(path: Path) -> Dict:
+
+@ensure_annotations
+def load_json(path: Path) -> ConfigBox:
+    """load json files data
+
+    Args:
+        path (Path): path to json file
+
+    Returns:
+        ConfigBox: data as class attributes instead of dict
+    """
     try:
-        if not path.exists():
-            raise FileNotFoundError(path)
-
         with open(path) as f:
-            data = json.load(f)
+            content = json.load(f)
 
-        logger.info(f"JSON loaded from {path}")
-        return data
-
+        logger.info(f"json file loaded succesfully from: {path}")
+        return ConfigBox(content)
+    
     except Exception as e:
         logger.error(f"Error loading JSON: {path}")
-        raise MedException(e)
+        raise MedException(e,sys)
