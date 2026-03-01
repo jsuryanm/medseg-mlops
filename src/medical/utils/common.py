@@ -9,6 +9,9 @@ from box import ConfigBox
 from pathlib import Path
 import sys 
 
+import random 
+import numpy as np 
+import torch 
 
 
 @ensure_annotations
@@ -96,3 +99,16 @@ def load_json(path: Path) -> ConfigBox:
     except Exception as e:
         logger.error(f"Error loading JSON: {path}")
         raise MedException(e,sys)
+
+def set_seed(seed: int = 42):
+    random.seed(seed)
+
+    np.random.seed(seed)
+    
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    
