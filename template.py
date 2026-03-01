@@ -31,6 +31,7 @@ list_of_files = [
     f"src/{project_name}/pipeline/predict.py",
     f"src/{project_name}/entity/__init__.py",
     f"src/{project_name}/entity/config_entity.py",
+    f"src/{project_name}/entity/config_schema.py",
     f"src/{project_name}/entity/artifact_entity.py",
     f"src/{project_name}/constants/__init__.py",
     f"src/{project_name}/exceptions/__init__.py",
@@ -46,7 +47,8 @@ list_of_files = [
     ".dockerignore",
     "requirements.txt",
     "research/trials.ipynb",
-    "streamlit_app.py"
+    "streamlit_app.py",
+    ".env"
 ]
 
 for file_path in list_of_files:

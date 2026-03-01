@@ -23,6 +23,4 @@ streamlit
 evidently
 python-dotenv
 PyYAML
-python-box
-ensure
 gdown
