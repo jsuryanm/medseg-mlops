@@ -86,7 +86,7 @@ class DataIngestion:
                 self.extract_zip_file()
                 self.verify_dataset()
 
-                data_ingestion_artifact = DataIngestionArtifact(unzip_dir=self.config.unzip_dir,
+            data_ingestion_artifact = DataIngestionArtifact(unzip_dir=self.config.unzip_dir,
                                                                 train_images_dir=self.config.train_images_dir,
                                                                 train_csv_path=self.config.train_csv_path)
             return data_ingestion_artifact

@@ -11,3 +11,14 @@ data_ingestion:
   sample_submission_path: artifacts/data_ingestion/sample_submission.csv
   remove_zip_after_extraction: true
   remove_sample_submission: true
+
+data_validation:
+
+  root_dir: artifacts/data_validation
+
+  validation_status_file: artifacts/data_validation/status.json
+
+  required_columns:
+    - id
+    - class
+    - segmentation

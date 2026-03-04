@@ -12,4 +12,9 @@ class DataIngestionConfig:
     sample_submission_path: Path
     remove_zip_after_extraction: bool
     remove_sample_submission: bool
-    
+
+@dataclass(frozen=True)
+class DataValidationConfig:
+    root_dir: Path
+    validation_status_file: Path
+    required_columns: list

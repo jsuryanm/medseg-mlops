@@ -4,7 +4,8 @@ from pathlib import Path
 from src.medical.constants import *
 from src.medical.utils.common import read_yaml,create_directories
 from src.medical.entity.config_schema import ConfigSchema
-from src.medical.entity.config_entity import (DataIngestionConfig)
+from src.medical.entity.config_entity import (DataIngestionConfig,
+                                              DataValidationConfig)
 
 class ConfigurationManager:
     def __init__(self,
@@ -33,3 +34,13 @@ class ConfigurationManager:
                                                     remove_zip_after_extraction=config.remove_zip_after_extraction,
                                                     remove_sample_submission=config.remove_sample_submission)
         return data_ingestion_config
+    
+    def get_data_validation_config(self) -> DataValidationConfig:
+        config = self.config.data_validation
+
+        create_directories([config.root_dir])
+
+        data_validation_config = DataValidationConfig(root_dir=config.root_dir,
+                                                      validation_status_file=config.validation_status_file,
+                                                      required_columns=config.required_columns)
+        return data_validation_config

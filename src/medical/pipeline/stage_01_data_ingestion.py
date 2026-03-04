@@ -15,13 +15,5 @@ class DataIngestionTrainingPipeline:
         data_ingestion_config = config.get_data_ingestion_config()
         data_ingestion = DataIngestion(config=data_ingestion_config)
         data_ingestion_artifact = data_ingestion.initiate_data_ingestion()
+        return data_ingestion_artifact
 
-if __name__ == "__main__":
-    try:
-        logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<")
-        obj = DataIngestionTrainingPipeline()
-        obj.main()
-        logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<\nx=======x")
-    except Exception as e:
-        logger.exception(e)
-        raise MedException(e,sys)    
