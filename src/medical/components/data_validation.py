@@ -84,16 +84,15 @@ class DataValidation:
 
     def initiate_data_validation(self) -> DataValidationArtifact:
         try:
+            train_csv_path = self.data_ingestion_artifact.train_csv_path
+            train_images_dir  = self.data_ingestion_artifact.train_images_dir
+
             if self.is_data_validated():
                 logger.info("Skipping data validation")
                 return DataValidationArtifact(validation_status=True,
                                                               validated_train_csv_path=train_csv_path,
                                                               validated_train_images_dir=train_images_dir)
-
-
-            train_csv_path = self.data_ingestion_artifact.train_csv_path
-            train_images_dir  = self.data_ingestion_artifact.train_images_dir
-            
+                        
             logger.info("Creating a pandas dataframe after reading train.csv")
             df = pd.read_csv(train_csv_path)
             

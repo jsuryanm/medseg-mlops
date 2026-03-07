@@ -24,3 +24,6 @@ evidently
 python-dotenv
 PyYAML
 gdown
+transformers 
+huggingface_hub
+hf-xet
