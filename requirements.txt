@@ -27,3 +27,5 @@ gdown
 transformers 
 huggingface_hub
 hf-xet
+dagshub
+rasterio

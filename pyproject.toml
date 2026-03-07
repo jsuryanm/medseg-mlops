@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "albumentations>=2.0.8",
+    "dagshub>=0.6.8",
     "dvc>=3.66.1",
     "evidently>=0.7.20",
     "fastapi>=0.135.1",
@@ -22,6 +23,7 @@ dependencies = [
     "python-dotenv>=1.2.2",
     "python-multipart>=0.0.22",
     "pyyaml>=6.0.3",
+    "rasterio>=1.5.0",
     "scikit-learn>=1.8.0",
     "segmentation-models-pytorch>=0.5.0",
     "streamlit>=1.55.0",
